@@ -1,4 +1,5 @@
 <?php 
+	// проверка версий
 	function editDescription($str) {
 		$new_str = "";
 		if(strlen($str) > 250) {
