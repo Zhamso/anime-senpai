@@ -429,6 +429,9 @@ body {
 .res__title {
 	font-family: 'Playfair Display SC', serif;
 	font-size: 20px;
+	text-decoration: none;
+	color: black;
+	font-weight: 700;
 	margin-bottom: 10px;
 }
 
@@ -486,3 +489,91 @@ body {
 	flex-grow: 100;
 }*/
 /* который нихуя не работает */
+
+
+/* Главная */
+
+.big__logo {
+	display: block;
+	width: 80%;
+	margin: 0 auto 10px;
+}
+
+.container--main {
+	margin-top: -8px;
+}
+
+.main__search--main {
+	margin-top: -40px;
+}
+
+.search__item--main {
+	height: 75px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+.container--main__inside {
+	display: flex;
+}
+
+.categories {
+	display: flex;
+	width: 33%;
+	margin: 8px;
+	background-color: rgb(245, 222, 222);
+
+	box-shadow: inset 0 0 5px;
+}
+
+.bar1 {
+	width: 50%;
+
+}
+
+.bar2 {
+	width: 50%;
+}
+
+.anitop {
+	display: block;
+	width: 67%;
+	margin: 8px;
+	
+	box-shadow: 0 0 5px;
+}
+
+.top__title {
+	width: 100%;
+	font-size: 24px;
+	color: red;
+	text-align: center;
+	font-weight: 700;
+	margin: 0;
+}
+
+.res__item--top {
+	width: 93%;
+	margin: 5px auto; 
+}
+
+.res__description--top {
+	line-height: 0.5;
+}
+
+.cat__bar {
+	margin: 5px;
+	/*border: 1px solid rgb(245, 200, 222)*/
+}
+
+.cat__bar li {
+	list-style-type: none;
+}
+
+.bar__title {
+	font-weight: 700;
+	color: #005;
+	text-align: center;
+	margin: 5px auto;
+}

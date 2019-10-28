@@ -49,7 +49,7 @@
 	<header class="header">
 		<div class="container container--head">
 
-			<a class="logo" href="http://anime-senpai.com/index.php">
+			<a class="logo" href="http://localhost/index.php">
 				<img class="logo__bg" src="assets/logo.png">
 			</a>
 
@@ -106,7 +106,7 @@
 				$genre = $row['genre'];
 				$producer = $row['producer'];
 				//$description = substr_replace($row['description'], '...', 247);
-				$description = $row['description'];
+				$description = editDescription($row['description']);
 				$review = $row['review'];
 				$story_rate = $row['story_rate'];
 				$draw_rate = $row['draw_rate'];
@@ -115,7 +115,7 @@
 				echo "<div class=\"res__item\">
 				<img class=\"res__poster\" src=\"$poster_link\">
 				<div class=\"res__params\">
-					<div class=\"res__title\">$title</div>
+					<a href=\"http://localhost/review.php/?id=$id\" class=\"res__title\">$title</a>
 					<div class=\"res__description\">
 						<p class=\"type\"><b>Тип: </b>$type</p>
 						<p class=\"genre\"><b>Жанр: </b>$genre</p>
@@ -124,7 +124,7 @@
 						<p class=\"lil__descr\"><b>Описание: </b>$description</p>
 					</div>
 
-					<a class=\"review__btn\" href=\"http://anime-senpai.com/review.php/?id=$id\">Узнать больше</a>
+					<a class=\"review__btn\" href=\"http://localhost/review.php/?id=$id\">Узнать больше</a>
 				</div>
 			</div>";
 			}

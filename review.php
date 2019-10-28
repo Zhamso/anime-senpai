@@ -41,7 +41,7 @@
 	<header class="header">
 		<div class="container container--head">
 
-			<a class="logo" href="http://anime-senpai.com/index.php">
+			<a class="logo" href="http://localhost/index.php">
 				<img class="logo__bg" src="../assets/logo.png">
 			</a>
 
