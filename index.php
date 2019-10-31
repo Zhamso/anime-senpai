@@ -1,3 +1,17 @@
+<?php 
+	$host = "127.0.0.1";
+	$dbname = "anime_senpai_db";
+	$user = "root";
+	$pass = "";
+	try{
+		$DBH = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+	}catch(PDOException $e) {  
+	    echo $e->getMessage();  
+	}
+	$GENRES = $DBH->query("SELECT genre FROM genres");
+	$GENRES->setFetchMode(PDO::FETCH_ASSOC);
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,40 +59,13 @@
 
 					<div class="cat__bar">
 						<p class="bar__title" style="font-weight: 700; color: #005;">Аниме по жанрам</p>
-
-						<li><a href="#">Боевые искусства</a></li>
-						<li><a href="#">Война</a></li>
-						<li><a href="#">Детектив</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
+						<?php 
+							$rows = $GENRES->fetchAll(PDO::FETCH_ASSOC);
+							foreach ($rows as $row) {
+								$genreTitle = $row['genre'];
+								echo "<li><a href=\"search.php?query_text=$genreTitle\">$genreTitle</a></li>";
+							}
+						 ?>
 					</div>
 
 				</div>

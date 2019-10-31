@@ -28,7 +28,7 @@
 	//$anime_id = $_GET['id'];
 	//$STH = $DBH->query("SELECT * FROM anime_info WHERE id = $anime_id");
 	//$STH->setFetchMode(PDO::FETCH_ASSOC);
-	$STH = $DBH->query("SELECT * FROM anime_info WHERE LOCATE('$search_text', title) != 0");
+	$STH = $DBH->query("SELECT * FROM anime_info WHERE LOCATE('$search_text', title)!=0 OR LOCATE('$search_text', genre)!=0 OR LOCATE('$search_text', year)!=0");
 	//$STH->setFetchMode(PDO::FETCH_ASSOC);
 	$rows = $STH->fetchAll(PDO::FETCH_ASSOC);
 	//print_r($rows);
