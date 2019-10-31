@@ -41,7 +41,7 @@
 	<header class="header">
 		<div class="container container--head">
 
-			<a class="logo" href="http://localhost/index.php">
+			<a class="logo" href="http://anime-senpai.com">
 				<img class="logo__bg" src="../assets/logo.png">
 			</a>
 
@@ -66,7 +66,7 @@
 
 					<div class="rating">
 
-						<div class="total"><?php echo ($ost_rate + $draw_rate + $story_rate) / 3; ?></div>
+						<div class="total"><?php echo number_format(($ost_rate + $draw_rate + $story_rate) / 3, 1, '.', ' '); ?></div>
 
 						<div class="particular">
 

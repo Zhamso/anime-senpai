@@ -74,44 +74,22 @@
 					
 					<div class="cat__bar">
 						<p class="bar__title" style="font-weight: 700; color: #005;">Год</p>
-
-						<li><a href="#">2019</a></li>
-						<li><a href="#">2018</a></li>
-						<li><a href="#">2017</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
+						<?php 
+						$yearsList = array(1985,1988,1994,1995,1998,2000,2001,2003,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019);
+						foreach ($yearsList as $year) {
+							echo "<li><a href=\"search.php?query_text=$year\">$year</a></li>";
+						}
+						 ?>
 					</div>
 
 					<div class="cat__bar">
 						<p class="bar__title" style="font-weight: 700; color: #005;">По типу</p>
 
-						<li><a href="#">Сериалы</a></li>
-						<li><a href="#">Полнометражные</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-					</div>
-
-					<div class="cat__bar">
-						<p class="bar__title" style="font-weight: 700; color: #005;">Жанры</p>
-
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
-						<li><a href="#">Example</a></li>
+						<li><a href="search.php?query_text=сериал">TV сериал</a></li>
+						<li><a href="search.php?query_text=фильм">Фильм</a></li>
+						<li><a href="search.php?query_text=ona">ONA</a></li>
+						<li><a href="search.php?query_text=ova">OVA</a></li>
+						<li><a href="search.php?query_text=спешл">Спешл</a></li>
 					</div>
 
 				</div>
@@ -124,7 +102,54 @@
 
 			<div class="anitop">
 				<p class="top__title">Топ сайта:</p>
+				<?php 
 
+					$ALL_RECORDS = $DBH->query("SELECT * FROM anime_info");
+					$ALL_RECORDS->setFetchMode(PDO::FETCH_ASSOC);
+					$rows = $ALL_RECORDS->fetchAll();
+					$topThree = array(0, 0, 0);
+
+					for ($i=0; $i < count($rows); $i++) {
+						$rate = ($rows[$i]['story_rate']+$rows[$i]['draw_rate']+$rows[$i]['ost_rate']) / 3;
+						//echo $rate . "<br/>";
+						if($rate > ($rows[$topThree[0]]['story_rate']+$rows[$topThree[0]]['draw_rate']+$rows[$topThree[0]]['ost_rate']) / 3){
+							$topThree[2] = $topThree[1];
+							$topThree[1] = $topThree[0];
+							$topThree[0] = $i;
+						}elseif ($rate > ($rows[$topThree[1]]['story_rate']+$rows[$topThree[1]]['draw_rate']+$rows[$topThree[1]]['ost_rate']) / 3) {
+							$topThree[2] = $topThree[1];
+							$topThree[1] = $i;
+						}elseif ($rate > ($rows[$topThree[2]]['story_rate']+$rows[$topThree[2]]['draw_rate']+$rows[$topThree[2]]['ost_rate']) / 3) {
+							$topThree[2] = $i;
+						}
+					}
+
+					foreach ($topThree as $rec) {
+						$id = $rows[$rec]['id'];
+						$poster_link = $rows[$rec]['poster_link'];
+						$title = $rows[$rec]['title'];
+						$type = $rows[$rec]['type'];
+						$genres = $rows[$rec]['genres'];
+						$year = $rows[$rec]['year'];
+						$producer = $rows[$rec]['producer'];
+						echo "  <div class=\"res__item res__item--top\">
+									<img class=\"res__poster\" src=\"$poster_link\">
+									<div class=\"res__params\">
+										<a href=\"review.php/?id=$id\" class=\"res__title\">$title</a>
+
+										<div class=\"res__description res__description--top\">
+											<p class=\"type\"><b>Тип: </b>$type</p>
+											<p class=\"genre\"><b>Жанр: </b>$genres</p>
+											<p class=\"year\"><b>Год выпуска: </b>$year</p>
+											<p class=\"producer\"><b>Режиссёр: </b>$producer</p>
+										</div>
+
+										<a class=\"review__btn\" href=\"review.php/?id=$id\">Узнать больше</a>
+									</div>
+								</div>";
+					}
+				 ?>
+				<!--
 				<div class="res__item res__item--top">
 					<img class="res__poster" src="assets/poster.jpg">
 					<div class="res__params">
@@ -172,7 +197,7 @@
 						<a class="review__btn" href="review.html">Узнать больше</a>
 					</div>
 				</div>	
-
+				-->
 			</div>
 		</div>
 	</div>
